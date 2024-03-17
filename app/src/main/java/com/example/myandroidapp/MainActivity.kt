@@ -36,18 +36,66 @@ class MainActivity : ComponentActivity() {
         setContent {
             MyAndroidAppTheme {
                 // A surface container using the 'background' color from the theme
-                GreetingText("01")
+                GreetingText()
             }
         }
     }
 }
 
+
 @Composable
-fun GreetingText(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+fun GreetingText(modifier: Modifier = Modifier) {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+    ) {
+        Image(painter = painterResource(id = R.drawable.ti_xung), contentDescription = "LOGO")
+        Text(
+            text = "Nguyễn Thanh Hải ",
+            color = Color.Black,
+            fontSize = 25.sp,
+            fontWeight = FontWeight.Bold,
+        )
+        Text(
+            text = "Learning Android App",
+            color = Color(0xFF16794a),
+            fontSize = 15.sp,
+        )
+        Spacer(modifier.height(250.dp))
+        Column {
+            Row {
+                Icon(
+                    imageVector = Icons.Rounded.Phone,
+                    contentDescription = "Phone",
+                    tint = Color(0xFF16794a)
+                )
+                Spacer(modifier = Modifier.width(12.dp))
+                Text(text = "0123456789")
+            }
+            Row {
+                Icon(
+                    imageVector = Icons.Rounded.Share,
+                    contentDescription = "Share",
+                    tint = Color(0xFF16794a)
+                )
+                Spacer(modifier = Modifier.width(12.dp))
+                Text(text = "@NguyenThanhHai")
+            }
+            Row {
+                Icon(
+                    imageVector = Icons.Rounded.Email,
+                    contentDescription = "Email",
+                    tint = Color(0xFF16794a)
+                )
+                Spacer(modifier = Modifier.width(12.dp))
+                Text(text = "haint.22itb@vku.udn.vn")
+            }
+            Row {
+
+            }
+        }
+    }
 }
 
 @Preview(
@@ -57,6 +105,6 @@ fun GreetingText(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun MyApp() {
     MyAndroidAppTheme {
-        GreetingText("01")
+        GreetingText()
     }
 }
