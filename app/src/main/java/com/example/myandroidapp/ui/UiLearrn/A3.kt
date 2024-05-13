@@ -1,4 +1,4 @@
-package com.example.myandroidapp.ui
+package com.example.myandroidapp.ui.UiLearrn
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api

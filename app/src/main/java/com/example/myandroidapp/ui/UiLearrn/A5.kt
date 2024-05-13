@@ -1,4 +1,4 @@
-package com.example.myandroidapp.ui
+package com.example.myandroidapp.ui.UiLearrn
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes

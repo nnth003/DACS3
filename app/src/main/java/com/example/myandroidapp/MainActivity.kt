@@ -12,7 +12,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyAndroidAppTheme(darkTheme = false) {
-                CloudApp()
+//                CloudApp()
             }
         }
     }
@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MyApp() {
     MyAndroidAppTheme(darkTheme = false) {
-        MarsPhotosApp()
+//        MarsPhotosApp()
     }
 }
 

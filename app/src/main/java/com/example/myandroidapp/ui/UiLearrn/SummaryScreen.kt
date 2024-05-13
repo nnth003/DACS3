@@ -1,4 +1,4 @@
-package com.example.myandroidapp.ui
+package com.example.myandroidapp.ui.UiLearrn
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -24,7 +24,6 @@ import com.example.myandroidapp.R
 import com.example.myandroidapp.data.OrderUiState
 import com.example.myandroidapp.ui.components.FormattedPriceLabel
 import com.example.myandroidapp.ui.theme.MyAndroidAppTheme
-import com.example.myandroidapp.ui.components.FormattedPriceLabel
 
 /**
  * This composable expects [orderUiState] that represents the order state, [onCancelButtonClicked]
