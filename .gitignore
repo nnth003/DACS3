@@ -13,7 +13,4 @@
 .externalNativeBuild
 .cxx
 local.properties
-/D:\Workspace\Android\AndroidApp\MyAndroidApp\app\src\main\java\com\example\myandroidapp\learn/*
-/D:\Workspace\Android\AndroidApp\MyAndroidApp\app\src\main\java\com\example\myandroidapp\ui\UiLearrn/*
-/D:\Workspace\Android\AndroidApp\MyAndroidApp\app\src\main\java\com\example\myandroidapp\network\MarsApiService.kt
-/D:\Workspace\Android\AndroidApp\MyAndroidApp\app\src\main\java\com\example\myandroidapp\network\MarsPhoto.kt
+

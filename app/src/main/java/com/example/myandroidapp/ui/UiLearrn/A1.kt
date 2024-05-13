@@ -1,5 +1,7 @@
 package com.example.myandroidapp.ui.UiLearrn
 
+package com.example.myandroidapp.ui.UiLearrn
+
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
