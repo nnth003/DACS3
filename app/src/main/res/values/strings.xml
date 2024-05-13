@@ -1,5 +1,21 @@
 <resources>
     <string name="app_name">App</string>
+
+    <string name="a3">Danh Sách</string>
+    <string name="a4">Thông Tin</string>
+
+    <string name="roll">Roll</string>
+    <string name="lemon_select">Tap the lemon tree to select a lemon</string>
+    <string name="lemon_squeeze">Keep tapping the lemon to squeeze it</string>
+    <string name="lemon_drink">Tap the lemonade to drink it</string>
+    <string name="lemon_empty_glass">Tap the empty glass to start again</string>
+    <string name="lemon_tree_content_description">Lemon tree</string>
+    <string name="lemon_content_description">Lemon</string>
+    <string name="lemonade_content_description">Glass of lemonade</string>
+    <string name="empty_glass_content_description">Empty glass</string>
+    <string name="tip_amount">Tip Amount: %s</string>
+    <string name="bill_amount">Bill Amount </string>
+
     <string name="affirmation1">I am strong.</string>
     <string name="affirmation2">I believe in myself.</string>
     <string name="affirmation3">Each day is a new opportunity to grow and be a better version of myself.</string>
@@ -10,6 +26,54 @@
     <string name="affirmation8">I have the courage to follow my heart.</string>
     <string name="affirmation9">Things will unfold at precisely the right time.</string>
     <string name="affirmation10">I will be present in all the moments that this day brings.</string>
+
+    <string name="truong1">THPT Thái Phiên</string>
+    <string name="truong2">THPT Lê Qúy Đôn.</string>
+    <string name="truong3">THPT Phan Châu Trinh</string>
+    <string name="truong4">THPT Hoàng Hoa Thám</string>
+    <string name="truong5">THPT Trần PHú</string>
+    <string name="truong6">THPT Hòa Vang</string>
+    <string name="truong7">THPT Nguyễn Thượng Hiền</string>
+    <string name="truong8">THPT Phan Thành Tài</string>
+    <string name="truong9">THPT Nguyễn Khuyến</string>
+    <string name="truong10">THPT Hải Châu</string>
+
+    <string name="mota1">735 Trần Cao Vân, Thanh Khê Đông, Thanh Khê, Đà Nẵng
+    Điện thoại: 0511 3756 629
+    Website: http://www.thaiphiendn.edu.vn//</string>
+    <string name="mota2">Địa chỉ: 01 Vũ Văn Dũng, Q. Sơn Trà, TP. Đà Nẵng
+Điện thoại: 0236.3944844
+Fax: 0236.3944936</string>
+    <string name="mota3">154 Lê Lợi, Hải Châu 1, Đà Nẵng
+Điện thoại: 0511 3822 367
+Website: http://pct.edu.vn/</string>
+    <string name="mota4">Địa chỉ: K2 Lê Hữu Trác, Quận Sơn Trà, Tp. Đà Nẵng
+Điện thoại: (0511) 3831220. Fax: (0511)3985395
+Email: info@thpt-hoanghoatham-danang.edu.vn
+Web: http://hoanghoatham.edu.vn/</string>
+    <string name="mota5">Địa chỉ: 11 Lê Thánh Tôn, Hải Châu 1, Hải Châu, Đà Nẵng
+Điện thoại: 0511 3822 851
+Web: http://tranphudn.edu.vn/</string>
+    <string name="mota6">Địa chỉ: 101 Q., Ông Ích Đường, Khuê Trung, Da Nang
+Điện thoại: 0511 3846 169
+Web: http://thpthoavang.edu.vn/</string>
+    <string name="mota7">Địa chỉ: 54 Thích Quảng Đức, Liên Chiểu, Đà Nẵng
+Điện thoại: 023 6376 7321
+Email: thptnguyenthuonghien@danang.goquan
+Website: https://edu.viettel.vn/danang-thptnguyenthuonghien
+Giờ mở cửa: 07:00 - 17:00</string>
+    <string name="mota8">Địa chỉ: Quốc lộ 1A, Hòa Vang, TP Đà Nẵng
+Điện thoại: 023 6368 4245
+Website: http://ptt-dn.edu.vn/
+Giờ mở cửa: 07:00 - 17:00</string>
+
+    <string name="quan1">Thanh Khê</string>
+    <string name="quan2">Hải Châu</string>
+    <string name="quan3">Sơn Trà.</string>
+    <string name="quan4">Ngũ Hành Sơn</string>
+    <string name="quan5">Liên Chiểu</string>
+    <string name="quan6"> Cẩm Lệ</string>
+    <string name="quan7"> Hòa Vang.</string>
 
     <string name="dog_name_1">Koda</string>
     <string name="dog_name_2">Lola</string>
@@ -96,4 +160,10 @@
         <item quantity="one">%d cupcake</item>
         <item quantity="other">%d cupcakes</item>
     </plurals>
+
+    <string name="loading_failed">Failed to load</string>
+    <string name="placeholder_result">Placeholder result text</string>
+    <string name="retry">Retry</string>
+    <string name="loading">Loading</string>
+    <string name="mars_photo">Mars photo</string>
 </resources>
