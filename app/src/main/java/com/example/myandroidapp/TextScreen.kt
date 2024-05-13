@@ -1,5 +1,4 @@
-//package com.example.myandroidapp
-//
+package com.example.myandroidapp
 //import androidx.annotation.StringRes
 //import androidx.compose.foundation.layout.fillMaxSize
 //import androidx.compose.foundation.layout.padding

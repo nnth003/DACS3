@@ -27,6 +27,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.myandroidapp.R
 import com.example.myandroidapp.ui.TruongData
 import com.example.myandroidapp.ui.TruongList
 import com.example.myandroidapp.ui.t6
