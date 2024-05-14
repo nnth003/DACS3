@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">DoAnCoSo3</string>
+    <string name="trangchu">Trang Chủ</string>
+    <string name="danhmuc">Danh Mục</string>
 </resources>
