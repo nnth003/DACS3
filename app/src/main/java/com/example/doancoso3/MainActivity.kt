@@ -10,8 +10,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.doancoso3.ui.HomeScreen
-import com.example.doancoso3.ui.NavHostApp
 import com.example.doancoso3.ui.theme.DoAnCoSo3Theme
 
 class MainActivity : ComponentActivity() {
@@ -25,7 +23,8 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
 //                    HomeScreen()
-                    NavHostApp()
+//                    NavHostApp()
+//                    Device()
                 }
             }
         }

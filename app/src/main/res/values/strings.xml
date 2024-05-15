@@ -2,4 +2,28 @@
     <string name="app_name">DoAnCoSo3</string>
     <string name="trangchu">Trang Chủ</string>
     <string name="danhmuc">Danh Mục</string>
+    <string name="giohang">Giỏ Hàng</string>
+    <string name="taikhoan">Tài Khoản</string>
+    <string name="mot">1</string>
+    <string name="hai">2</string>
+    <string name="ba">3</string>
+    <string name="bon">4</string>
+    <string name="nam">5</string>
+    <string name="sau">6</string>
+    <string name="bay">7</string>
+    <string name="tam">8</string>
+    <string name="chin">9</string>
+    <string name="muoi">10</string>
+    <string name="tip_amount">Tip Amount: %s</string>
+
+    <string name="truong1">THPT Thái Phiên</string>
+    <string name="truong2">THPT Lê Qúy Đôn.</string>
+    <string name="truong3">THPT Phan Châu Trinh</string>
+    <string name="truong4">THPT Hoàng Hoa Thám</string>
+    <string name="truong5">THPT Trần PHú</string>
+    <string name="truong6">THPT Hòa Vang</string>
+    <string name="truong7">THPT Nguyễn Thượng Hiền</string>
+    <string name="truong8">THPT Phan Thành Tài</string>
+    <string name="truong9">THPT Nguyễn Khuyến</string>
+    <string name="truong10">THPT Hải Châu</string>
 </resources>

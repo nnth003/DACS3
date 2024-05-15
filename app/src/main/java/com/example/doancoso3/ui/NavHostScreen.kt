@@ -29,7 +29,9 @@ import com.example.doancoso3.ui.theme.DoAnCoSo3Theme
 enum class NavHostScreen(@StringRes val title: Int) {
     Start(title = R.string.app_name),
     TrangChu(title = R.string.trangchu),
-    DanhMuc(title = R.string.danhmuc)
+    DanhMuc(title = R.string.danhmuc),
+    GioHang(title = R.string.giohang),
+    TaiKhoan(title = R.string.taikhoan)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -76,6 +78,7 @@ fun NavHostApp(
 //                navigateUp = { navControler.navigateUp() })
 //        }
 //    ) {inner ->
+
     val navControler = rememberNavController()
        NavHost(
            navController = navControler,
@@ -83,15 +86,19 @@ fun NavHostApp(
 //           modifier = Modifier.padding(inner)
            ){
             composable(route = NavHostScreen.TrangChu.name){
-                ScaffoldHome(
-                    onDanhMucButton = navControler,
-                    route = NavHostScreen.DanhMuc.name
-                )
+//                ScaffoldHome(
+//                    onDanhMucButton = navControler,
+//                    route = NavHostScreen.DanhMuc.name
+//                )
             }
            composable(route = NavHostScreen.DanhMuc.name){
-                ScaffoldList(
+//                ScaffoldList()
+            }
+           composable(route = NavHostScreen.GioHang.name){
 
-                )
+            }
+           composable(route = NavHostScreen.TaiKhoan.name){
+
             }
        }
     }
