@@ -17,6 +17,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
@@ -29,6 +30,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -38,6 +40,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.doancoso3.R
 import com.example.doancoso3.ui.data.Product
 import com.example.doancoso3.ui.data.products
+import com.example.doancoso3.ui.mainscreen.Screen
 import com.example.doancoso3.ui.theme.DoAnCoSo3Theme
 
 
@@ -53,7 +56,7 @@ fun EcommerceHomeScreen(
             .background(Color.White)
             .padding(horizontal = 16.dp)
     ) {
-        TopBar()
+        TopBar(navController)
         TitleSection()
         Spacer(modifier = Modifier.height(16.dp))
         SearchSection()
@@ -63,7 +66,7 @@ fun EcommerceHomeScreen(
 }
 
 @Composable
-fun TopBar() {
+fun TopBar(navController: NavController) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -71,8 +74,9 @@ fun TopBar() {
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
-            imageVector = Icons.Default.Menu,
-            contentDescription = null
+            imageVector = Icons.Default.ArrowBack,
+            contentDescription = stringResource(R.string.back_button),
+            Modifier.clickable { navController.navigateUp() }
         )
     }
 }
@@ -83,12 +87,12 @@ fun TitleSection() {
         modifier = Modifier.padding(horizontal = 8.dp)
     ) {
         Text(
-            text = "Nike Collection",
+            text = "Danh Sách Sản Phẩm",
             style = MaterialTheme.typography.headlineSmall,
             fontWeight = FontWeight.Bold
         )
         Text(
-            text = "Everything you need at just one place.",
+            text = "",
             color = Color(0xFFCDCDCD)
         )
     }
@@ -125,7 +129,7 @@ fun ProductsSection(navController: NavController) {
             ProductItem(
                 product,
                 onItemClick = {
-//                    navController.navigate(Screen.EcommerceProductScreen.route + "/${product.id}")
+                    navController.navigate(Screen.ProductScreen.route + "/${product.id}")
                 }
             )
             Spacer(modifier = Modifier.height(16.dp))
@@ -179,7 +183,7 @@ fun ProductItem(
                         text = "Buy",
                         fontSize = 14.sp,
                         modifier = Modifier
-                            .background(Color(0xFF313131), shape = CircleShape)
+                            .background(Color(0xCE313131), shape = CircleShape)
                             .padding(top = 4.dp, bottom = 4.dp, start = 12.dp, end = 12.dp),
                         color = textColor
                     )

@@ -1,21 +1,15 @@
 package com.example.doancoso3.ui
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -45,55 +39,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.doancoso3.R
+import com.example.doancoso3.ui.data.Data
+import com.example.doancoso3.ui.data.DuLieu
 import com.example.doancoso3.ui.theme.DoAnCoSo3Theme
-
-data class DuLieu(
-    @DrawableRes val anh: Int,
-//    @StringRes val ten: Int,
-)
-
-class Data() {
-    fun load(): List<DuLieu> {
-        return listOf<DuLieu>(
-//            DuLieu(R.drawable.image1, R.string.truong1),
-//            DuLieu(R.drawable.image2, R.string.truong2),
-//            DuLieu(R.drawable.image3, R.string.truong3),
-//            DuLieu(R.drawable.image4, R.string.truong4),
-//            DuLieu(R.drawable.image5, R.string.truong5),
-//            DuLieu(R.drawable.image6, R.string.truong6),
-//            DuLieu(R.drawable.image7, R.string.truong7),
-//            DuLieu(R.drawable.image8, R.string.truong8),
-//            DuLieu(R.drawable.image9, R.string.truong9),
-//            DuLieu(R.drawable.image10, R.string.truong10),
-            DuLieu(R.drawable.image1),
-            DuLieu(R.drawable.image1),
-//            DuLieu(R.drawable.image1),
-//            DuLieu(R.drawable.image1),
-//            DuLieu(R.drawable.image1),
-//            DuLieu(R.drawable.image1),
-//            DuLieu(R.drawable.image1),
-//            DuLieu(R.drawable.image1),
-//            DuLieu(R.drawable.image1),
-//            DuLieu(R.drawable.image1),
-
-            )
-    }
-}
 
 @Composable
 fun HomeScreen() {
 
 }
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

@@ -4,6 +4,9 @@
     <string name="danhmuc">Danh Mục</string>
     <string name="giohang">Giỏ Hàng</string>
     <string name="taikhoan">Tài Khoản</string>
+
+    <string name="back_button">Back</string>
+
     <string name="mot">1</string>
     <string name="hai">2</string>
     <string name="ba">3</string>

@@ -1,5 +1,6 @@
 package com.example.doancoso3.ui.data
 
+import androidx.annotation.DrawableRes
 import androidx.compose.ui.graphics.Color
 
 data class Product(
@@ -13,3 +14,8 @@ data class Product(
 )
 
 val size = (36..42).toList()
+
+data class DuLieu(
+    @DrawableRes val anh: Int,
+//    @StringRes val ten: Int,
+)
