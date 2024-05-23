@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -59,6 +60,13 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.firebase.auth.ktx)
+//    implementation(libs.firebase.database.ktx)
+    implementation(libs.firebase.firestore.ktx)
+//    implementation(libs.firebase.database)
+    implementation(libs.firebase.functions)
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.storage)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -75,4 +83,15 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-scalars:2.9.0")
 
     implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
+
+//    implementation("androidx.compose.runtime:runtime-livedata:1.6.7")
+//    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.7.0")
+//
+    implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
+//    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-storage-ktx:21.0.0")
+//    implementation ("com.google.firebase:firebase-database-ktx:20.0.2")
+//    implementation ("io.coil-kt:coil-compose:1.4.0")
+    implementation("io.coil-kt:coil-compose:2.6.0")
+
 }

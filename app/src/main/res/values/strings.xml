@@ -2,8 +2,12 @@
     <string name="app_name">DoAnCoSo3</string>
     <string name="trangchu">Trang Chủ</string>
     <string name="danhmuc">Danh Mục</string>
+    <string name="chitietsanpham">Chi Tiết Sản Phẩm</string>
     <string name="giohang">Giỏ Hàng</string>
     <string name="taikhoan">Tài Khoản</string>
+
+    <string name="danhmucsanpham">Danh Muc Sản Phẩm </string>
+    <string name="danhsachsanpham">Danh Sách Sản Phẩm Nổi Bật</string>
 
     <string name="back_button">Back</string>
 
@@ -29,4 +33,6 @@
     <string name="truong8">THPT Phan Thành Tài</string>
     <string name="truong9">THPT Nguyễn Khuyến</string>
     <string name="truong10">THPT Hải Châu</string>
+    <string name="title_activity_course_details">CourseDetailsActivity</string>
+    <string name="title_activity_update_course">UpdateCourse</string>
 </resources>

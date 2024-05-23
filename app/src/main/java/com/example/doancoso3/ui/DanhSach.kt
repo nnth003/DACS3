@@ -15,32 +15,34 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import coil.compose.rememberImagePainter
 import com.example.doancoso3.R
-import com.example.doancoso3.ui.data.Product
-import com.example.doancoso3.ui.data.products
-import com.example.doancoso3.ui.mainscreen.Screen
+import com.example.doancoso3.ui.data.ProductList
+import com.example.doancoso3.ui.data.ViewModelDACS3
+import com.example.doancoso3.ui.navigation.ScreenDACS3
 import com.example.doancoso3.ui.theme.DoAnCoSo3Theme
 
 
@@ -48,8 +50,12 @@ val searchText = mutableStateOf("")
 
 @Composable
 fun EcommerceHomeScreen(
-    navController: NavController
+    navController: NavHostController,
+    viewModelDACS3: ViewModelDACS3,
+//    id: Int
 ) {
+    val sanPhamList by viewModelDACS3.product.collectAsState()
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -61,12 +67,12 @@ fun EcommerceHomeScreen(
         Spacer(modifier = Modifier.height(16.dp))
         SearchSection()
         Spacer(modifier = Modifier.height(24.dp))
-        ProductsSection(navController)
+        ProductsSection(navController, sanPhamList)
     }
 }
 
 @Composable
-fun TopBar(navController: NavController) {
+fun TopBar(navController: NavHostController) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -123,15 +129,14 @@ fun SearchSection() {
 }
 
 @Composable
-fun ProductsSection(navController: NavController) {
+fun ProductsSection(navController: NavHostController, sanPhamList: List<ProductList>) {
     LazyColumn {
-        items(products) { product ->
+        items(sanPhamList) { product ->
             ProductItem(
-                product,
-                onItemClick = {
-                    navController.navigate(Screen.ProductScreen.route + "/${product.id}")
-                }
-            )
+                product
+            ) {
+                navController.navigate(ScreenDACS3.ProductScreen.route + "/${product.id}")
+            }
             Spacer(modifier = Modifier.height(16.dp))
         }
     }
@@ -139,59 +144,65 @@ fun ProductsSection(navController: NavController) {
 
 @Composable
 fun ProductItem(
-    product: Product,
+    product: ProductList,
     onItemClick: () -> Unit
 ) {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(color = product.color, shape = RoundedCornerShape(24.dp))
-            .height(180.dp)
-            .clickable(onClick = onItemClick),
-        contentAlignment = Alignment.Center
+    Card(
+        elevation = CardDefaults.cardElevation(10.dp)
     ) {
-
-        Row(
+        Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 16.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
+                .height(180.dp)
+                .background(Color.White)
+                .clickable(onClick = onItemClick),
+            contentAlignment = Alignment.Center,
 
-            Image(
-                painter = painterResource(product.image),
-                contentDescription = null,
-                modifier = Modifier.fillMaxWidth(0.4f)
-            )
+            ) {
 
-            Spacer(modifier = Modifier.width(16.dp))
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
 
-            Column {
-                Text(product.productName, style = MaterialTheme.typography.headlineSmall)
-                Spacer(modifier = Modifier.height(8.dp))
-                Text(
-                    text = product.productDescription,
-                    color = Color(0xFFB1B1B1)
+                Image(
+                    painter = rememberImagePainter(product.imgae),
+                    contentDescription = null,
+                    modifier = Modifier.fillMaxWidth(0.4f)
                 )
-                Spacer(modifier = Modifier.height(16.dp))
-                Row(
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(text = product.price, fontWeight = FontWeight.Bold, fontSize = 16.sp)
-                    Spacer(modifier = Modifier.width(16.dp))
-                    Text(
-                        text = "Buy",
-                        fontSize = 14.sp,
-                        modifier = Modifier
-                            .background(Color(0xCE313131), shape = CircleShape)
-                            .padding(top = 4.dp, bottom = 4.dp, start = 12.dp, end = 12.dp),
-                        color = textColor
-                    )
-                }
-            }
 
+                Spacer(modifier = Modifier.width(16.dp))
+
+                Column {
+                    Text(product.name, style = MaterialTheme.typography.headlineSmall)
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = "Mô tả",
+                        color = Color(0xFFB1B1B1)
+                    )
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(text = "$3000", fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                        Spacer(modifier = Modifier.width(16.dp))
+                        Text(
+                            text = "Buy",
+                            fontSize = 14.sp,
+                            modifier = Modifier
+                                .background(Color(0xCE313131), shape = CircleShape)
+                                .padding(top = 4.dp, bottom = 4.dp, start = 12.dp, end = 12.dp),
+                            color = textColor
+                        )
+                    }
+                }
+
+            }
         }
     }
+
 }
 
 @Preview(
@@ -203,7 +214,7 @@ fun DanhMuc() {
     DoAnCoSo3Theme() {
 //        DanhSachScreen(DanhSach().load())
         val navController = rememberNavController()
-        EcommerceHomeScreen(navController)
+//        EcommerceHomeScreen(navController)
     }
 
 }

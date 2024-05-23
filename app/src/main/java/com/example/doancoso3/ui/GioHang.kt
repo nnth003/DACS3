@@ -2,10 +2,14 @@ package com.example.doancoso3.ui
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -17,15 +21,10 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.List
-import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -38,13 +37,13 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -52,7 +51,11 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.doancoso3.R
+import com.example.doancoso3.ui.data.ViewModelDACS3
 import com.example.doancoso3.ui.theme.DoAnCoSo3Theme
 
 data class Go(
@@ -64,12 +67,6 @@ data class Go(
 class DataGioHang() {
     fun load(): List<Go> {
         return listOf<Go>(
-//            Go(R.string.hero1, R.string.description1, R.drawable.android_superhero1),
-//            Go(R.string.hero2, R.string.description2, R.drawable.android_superhero2),
-//            Go(R.string.hero3, R.string.description2, R.drawable.android_superhero3),
-//            Go(R.string.hero4, R.string.description4, R.drawable.android_superhero4),
-//            Go(R.string.hero5, R.string.description5, R.drawable.android_superhero5),
-//            Go(R.string.hero6, R.string.description6, R.drawable.android_superhero6),
             Go("Macbook", R.drawable.architecture, "19.000.000đ"),
             Go("SamSung", R.drawable.architecture, "20.000.000đ"),
             Go("Dell", R.drawable.architecture, "10.000.000đ"),
@@ -79,7 +76,10 @@ class DataGioHang() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun GioHangApp() {
+fun CartScreen(
+    navHostController: NavHostController,
+    viewModelDACS3: ViewModelDACS3,
+) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -91,8 +91,11 @@ fun GioHangApp() {
                     Text(stringResource(R.string.giohang))
                 },
                 navigationIcon = {
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "")
+                    IconButton(onClick = { navHostController.navigateUp() }) {
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = ""
+                        )
                     }
                 }
             )
@@ -104,7 +107,9 @@ fun GioHangApp() {
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Button(
-                    onClick = { /*TODO*/ }, modifier = Modifier
+                    onClick = {
+                    },
+                    modifier = Modifier
                         .weight(1f)
                         .padding(2.dp)
                 ) {
@@ -132,8 +137,7 @@ fun GioHangList(goList: List<Go>, modifier: Modifier = Modifier) {
 
 @Composable
 fun CardGioHang(go: Go, modifier: Modifier = Modifier) {
-    var quantity by remember { mutableStateOf(0) }
-
+    var quantity by remember { mutableIntStateOf(1) }
     Card(
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
         modifier = modifier,
@@ -142,6 +146,7 @@ fun CardGioHang(go: Go, modifier: Modifier = Modifier) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
+                .fillMaxSize()
                 .padding(16.dp)
                 .sizeIn(minHeight = 72.dp)
         ) {
@@ -176,19 +181,17 @@ fun CardGioHang(go: Go, modifier: Modifier = Modifier) {
                 Spacer(modifier = Modifier.height(10.dp))
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Button(
-                        onClick = { quantity-- },
+                        onClick = { if (quantity > 1) quantity-- else quantity = 1 },
                         modifier = Modifier
-                            .width(50.dp)
-                            .height(35.dp)
+                            .width(35.dp)
+                            .height(25.dp),
+                        contentPadding = PaddingValues(0.dp)
+//                        modifier = Modifier.size(35.dp)
                     ) {
                         Text(text = "-")
                     }
                     BasicTextField(
-                        value = if (quantity >= 0) {
-                            quantity.toString()
-                        } else {
-                            quantity.toString(0)
-                        },
+                        value = quantity.toString(),
                         onValueChange = { quantity = it.toIntOrNull() ?: 0 },
                         modifier = Modifier
                             .width(50.dp)
@@ -199,20 +202,33 @@ fun CardGioHang(go: Go, modifier: Modifier = Modifier) {
                     Button(
                         onClick = { quantity++ },
                         modifier = Modifier
-                            .width(50.dp)
-                            .height(35.dp)
+                            .width(35.dp)
+                            .height(25.dp),
+                        contentPadding = PaddingValues(0.dp)
                     ) {
                         Text(text = "+")
                     }
                 }
 
             }
-            Button(
-                onClick = { /*TODO*/ },
-//                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.onPrimaryContainer)
+            Column(
+                modifier = Modifier.fillMaxHeight(1f),
+                verticalArrangement = Arrangement.Bottom
             ) {
-                Icon(imageVector = Icons.Default.Delete, contentDescription = "")
+                Spacer(modifier = Modifier.height(45.dp))
+                Button(
+                    onClick = { /*TODO*/ },
+                    modifier = Modifier.height(35.dp)
+//                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.onPrimaryContainer)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Delete,
+                        contentDescription = "",
+
+                        )
+                }
             }
+
         }
     }
 }
@@ -224,6 +240,8 @@ fun CardGioHang(go: Go, modifier: Modifier = Modifier) {
 @Composable
 fun GioHang() {
     DoAnCoSo3Theme(darkTheme = false) {
-        GioHangApp()
+        val viewModelDACS3 = ViewModelDACS3()
+        val navHostController = rememberNavController()
+        CartScreen(navHostController, viewModelDACS3)
     }
 }

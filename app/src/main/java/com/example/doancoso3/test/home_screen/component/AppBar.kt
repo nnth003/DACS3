@@ -98,43 +98,43 @@ fun AppBar(
                     contentDescription = "Cart Icon"
                 )
             }
-            ConstraintLayout() {
-                val (notification, notificationCounter) = createRefs()
-
-                Box(
-                    modifier = Modifier
-                        .size(48.dp)
-                        .clip(CircleShape)
-                        .background(MaterialTheme.colorScheme.primary)
-                        .constrainAs(notification) {}
-                        .clickable {
-                            onNotificationIconClick()
-                        },
-
-                    contentAlignment = Alignment.Center
-                ) {
-                    Image(
-                        imageVector = Icons.Default.Notifications,
-                        contentDescription = "Notification Icon"
-                    )
-
-                }
-                //notification count
-                Box(
-                    modifier = Modifier
-                        .size(20.dp)
-                        .background(color = Color.Red, shape = CircleShape)
-                        .padding(3.dp)
-                        .constrainAs(notificationCounter) {
-                            top.linkTo(notification.top)
-                            end.linkTo(notification.end)
-                        },
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(text = "3", fontSize = 11.sp, color = Color.White)
-                }
-
-            }
+//            ConstraintLayout() {
+//                val (notification, notificationCounter) = createRefs()
+//
+//                Box(
+//                    modifier = Modifier
+//                        .size(48.dp)
+//                        .clip(CircleShape)
+//                        .background(MaterialTheme.colorScheme.primary)
+//                        .constrainAs(notification) {}
+//                        .clickable {
+//                            onNotificationIconClick()
+//                        },
+//
+//                    contentAlignment = Alignment.Center
+//                ) {
+//                    Image(
+//                        imageVector = Icons.Default.Notifications,
+//                        contentDescription = "Notification Icon"
+//                    )
+//
+//                }
+//                //notification count
+//                Box(
+//                    modifier = Modifier
+//                        .size(20.dp)
+//                        .background(color = Color.Red, shape = CircleShape)
+//                        .padding(3.dp)
+//                        .constrainAs(notificationCounter) {
+//                            top.linkTo(notification.top)
+//                            end.linkTo(notification.end)
+//                        },
+//                    contentAlignment = Alignment.Center
+//                ) {
+//                    Text(text = "3", fontSize = 11.sp, color = Color.White)
+//                }
+//
+//            }
 
 
         }

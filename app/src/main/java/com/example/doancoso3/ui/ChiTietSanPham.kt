@@ -18,33 +18,37 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.End
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
-import com.example.doancoso3.R
-import com.example.doancoso3.ui.data.products
-import com.example.doancoso3.ui.data.Product
+import androidx.navigation.NavHostController
+import coil.compose.rememberAsyncImagePainter
+import com.example.doancoso3.ui.data.ViewModelDACS3
 import com.example.doancoso3.ui.data.size
+import com.example.doancoso3.ui.navigation.ScreenDACS3
 import com.example.doancoso3.ui.theme.DoAnCoSo3Theme
 
 
 val textColor = Color(0xFFB1B1B1)
+
 @Composable
 fun ProductScreen(
-    navController: NavController,
+    viewModelDACS3: ViewModelDACS3,
+    navController: NavHostController,
     id: Int
 ) {
+    val sanPhamList by viewModelDACS3.product.collectAsState()
+    val product = sanPhamList[id]
 
-    val product = products[id]
 
     Column(
         modifier = Modifier
@@ -58,33 +62,44 @@ fun ProductScreen(
                 .fillMaxWidth()
                 .padding(16.dp),
         ) {
-            ImageSection(product.image, product.color, Modifier.clickable { navController.navigateUp() })
+            ImageSection(
+                product.imgae,
+                Color.White,
+                Modifier.clickable { navController.navigateUp() }
+            )
             Spacer(modifier = Modifier.height(16.dp))
             AboutSection(
-                product.productName,
-                productDescription = product.productDescription,
-                rating = product.rating,
-                price = product.price
+                product.name,
+                productDescription = "Mô tả",
+//                rating = product.rating,
+                price = "$4000"
             )
             Spacer(modifier = Modifier.height(24.dp))
             SizeSection()
             Spacer(modifier = Modifier.height(24.dp))
             DescriptionSection("Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.")
         }
-        AddToCartSection(modifier = Modifier.align(End), product.color)
+        AddToCartSection(
+            modifier = Modifier.align(End),
+            color = Color.White,
+            onSelected = {
+                viewModelDACS3.addSanPham(product.name, product.imgae)
+                navController.navigate(ScreenDACS3.CartScreen.route)
+            }
+        )
     }
 }
 
 @Composable
 fun ImageSection(
-    image: Int,
+    image: String,
     color: Color,
     modifier: Modifier
 ) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(0.4f)
+            .fillMaxHeight(0.3f)
             .background(color, shape = RoundedCornerShape(24.dp))
     ) {
         Row(
@@ -103,11 +118,12 @@ fun ImageSection(
         }
 
         Image(
-            painter = painterResource(id = image),
+            painter = rememberAsyncImagePainter(model = image),
             contentDescription = null,
             modifier = Modifier
                 .fillMaxWidth(0.7f)
-                .align(Center)
+                .align(Center),
+            contentScale = ContentScale.Inside
         )
     }
 }
@@ -116,7 +132,7 @@ fun ImageSection(
 fun AboutSection(
     name: String,
     productDescription: String,
-    rating: String,
+//    rating: String,
     price: String
 ) {
     Column(
@@ -143,7 +159,7 @@ fun AboutSection(
                     tint = Color(0xFFFFC000)
                 )
                 Spacer(modifier = Modifier.width(4.dp))
-                Text(text = rating)
+                Text(text = "4.0")
                 Spacer(modifier = Modifier.width(4.dp))
                 Text(text = "(Avg. Rating)")
             }
@@ -201,18 +217,20 @@ fun DescriptionSection(
 }
 
 @Composable
-fun AddToCartSection(modifier: Modifier, color: Color) {
+fun AddToCartSection(modifier: Modifier, color: Color, onSelected: () -> Unit) {
     Box(
         modifier = modifier
             .size(120.dp, 60.dp)
             .background(
-                color, shape = RoundedCornerShape(
+                color = Color.White,
+                shape = RoundedCornerShape(
                     topStart = 30.dp,
                     bottomStart = 30.dp,
                     bottomEnd = 0.dp,
                     topEnd = 0.dp
                 )
-            ),
+            )
+            .clickable(onClick = onSelected),
         contentAlignment = Center
     ) {
         Row(
@@ -220,13 +238,14 @@ fun AddToCartSection(modifier: Modifier, color: Color) {
         ) {
             Icon(
                 imageVector = Icons.Default.ShoppingCart,
-                 contentDescription = null
+                contentDescription = null
             )
             Spacer(modifier = Modifier.width(16.dp))
             Text(text = "Add", fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
         }
     }
 }
+
 
 @Composable
 fun HeartSection() {
@@ -252,8 +271,9 @@ fun HeartSection() {
 @Composable
 fun ChiTiet() {
     DoAnCoSo3Theme {
-        val navController = rememberNavController()
-        ProductScreen(navController,1)
+//        val navController = rememberNavController()
+//        val viewModelDACS3 = ViewModelDACS3()
+//        ProductScreen(viewModelDACS3, navController,1)
     }
 }
 

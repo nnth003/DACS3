@@ -19,3 +19,14 @@ data class DuLieu(
     @DrawableRes val anh: Int,
 //    @StringRes val ten: Int,
 )
+
+data class UrlAnh(
+    val anh: String,
+)
+data class ProductList(
+    val id: Int,
+    var name: String,
+    val imgae: String,
+)
+
+

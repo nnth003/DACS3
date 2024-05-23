@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "916568952938",
+    "project_id": "doancoso3-9cfb5",
+    "storage_bucket": "doancoso3-9cfb5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:916568952938:android:64b6e4ea32d566be64fa13",
+        "android_client_info": {
+          "package_name": "com.example.doancoso3"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLgP-dvPEqXCs2OiyP6GEjTsxASYNQyZs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

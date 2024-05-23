@@ -26,17 +26,17 @@ fun Navigation(navHostController: NavHostController) {
     val context = LocalContext.current
     NavHost(
         navController = navHostController,
-        startDestination = Screen.ScaffoldHome.route
+        startDestination = Screen.EcommerceHomeScreen.route
     ) {
         composable(route = Screen.ScaffoldHome.route) {
-            ScaffoldHome(
-                duLieu = Data().load(),
-                onDanhMucButton = navHostController,
-                route = Screen.EcommerceHomeScreen.route
-            )
+//            ScaffoldHome(
+//                duLieu = Data().load(),
+//                onDanhMucButton = navHostController,
+//                route = Screen.EcommerceHomeScreen.route
+//            )
         }
         composable(route = Screen.EcommerceHomeScreen.route) {
-            EcommerceHomeScreen(navController = navHostController)
+//            EcommerceHomeScreen(navController = navHostController)
         }
         composable(
             route = Screen.ProductScreen.route + "/{productsId}",
@@ -49,7 +49,7 @@ fun Navigation(navHostController: NavHostController) {
 
             val id = it.arguments?.getInt("productsId")
             if (id != null) {
-                ProductScreen(navController = navHostController, id = id)
+//                ProductScreen(navController = navHostController, id = id)
             } else {
 
                 Toast.makeText(context, "Error ID", Toast.LENGTH_SHORT).show()
