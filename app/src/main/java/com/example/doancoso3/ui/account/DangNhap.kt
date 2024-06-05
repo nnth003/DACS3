@@ -6,12 +6,15 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -19,6 +22,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.doancoso3.ui.navigation.ScreenDACS3
 
 @Composable
 fun LoginScreen(
@@ -32,17 +36,30 @@ fun LoginScreen(
         verticalArrangement = Arrangement.SpaceBetween
     ) {
         Column {
-//            BackButton(R.drawable.ic_round_arrow_back, null) {
-//                navController?.navigateUp()
-//            }
+            BackButton(Icons.Default.ArrowBack, null) {
+                navController?.navigateUp()
+            }
             Spacer(modifier = Modifier.height(32.dp))
-            TitleSection("Welcome\nBack", "Login to your account using email")
+            TitleSection("Welcome Back!", "Login to your account using email")
         }
         LoginSection("Email address", "Password")
-        ContinueButtonSection("Login", Icons.Default.ArrowForward, null)
+        Row (
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center,
+            modifier = Modifier.fillMaxWidth(),
+        ){
+            Button(
+                onClick = { /*TODO*/ },
+                modifier = Modifier.width(200.dp)
+                ) {
+                Text(text = "Login")
+            }
+        }
+
+//        ContinueButtonSection("Login", Icons.Default.ArrowForward, null)
         OtherOptionSection()
         RedirectSection("Sign up", true) {
-//            navController?.navigate(Screen.SignupScreen.route)
+            navController?.navigate(ScreenDACS3.Signup.route)
         }
     }
 }
@@ -56,12 +73,38 @@ fun LoginSection(
         val email = remember { mutableStateOf("") }
         val password = remember { mutableStateOf("") }
 
-        SignupTextField(email.value, { email.value = it }, "",hintEmail)
+        LoginTextField(email.value, { email.value = it }, "",hintEmail)
         Spacer(modifier = Modifier.height(12.dp))
-        SignupTextField(password.value, { password.value = it } ,"",hintPassword)
+        LoginTextField(password.value, { password.value = it } ,"",hintPassword)
     }
 }
-
+@Composable
+fun LoginTextField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    hint: String,
+    hintTitle: String,
+) {
+    Column {
+        Text(
+            text = hintTitle,
+            modifier = Modifier.padding(start = 4.dp, bottom = 4.dp),
+            color = MaterialTheme.colorScheme.primary
+        )
+        TextField(
+            value = value,
+            onValueChange = onValueChange,
+            placeholder = {
+                Text(text = hint)
+            },
+            colors = TextFieldDefaults.colors(
+//                backgroundColor = textWhite,
+                focusedIndicatorColor = MaterialTheme.colorScheme.primary
+            ),
+            modifier = Modifier.fillMaxWidth(),
+        )
+    }
+}
 @Composable
 fun OtherOptionSection() {
     Row(
@@ -82,7 +125,7 @@ fun OptionItem(
     Box(
         modifier = Modifier
             .size(60.dp)
-            .border(2.dp, textWhite, CircleShape),
+            .border(2.dp, MaterialTheme.colorScheme.primary, CircleShape),
         contentAlignment = Alignment.Center
     ) {
         Image(

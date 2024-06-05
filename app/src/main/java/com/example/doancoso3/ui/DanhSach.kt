@@ -168,7 +168,7 @@ fun ProductItem(
             ) {
 
                 Image(
-                    painter = rememberImagePainter(product.imgae),
+                    painter = rememberImagePainter(product.image),
                     contentDescription = null,
                     modifier = Modifier.fillMaxWidth(0.4f)
                 )

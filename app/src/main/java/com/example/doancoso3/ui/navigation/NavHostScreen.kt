@@ -16,7 +16,11 @@ import com.example.doancoso3.ui.CartScreen
 import com.example.doancoso3.ui.EcommerceHomeScreen
 import com.example.doancoso3.ui.ProductScreen
 import com.example.doancoso3.ui.ScaffoldHome
+import com.example.doancoso3.ui.account.LoginScreen
+import com.example.doancoso3.ui.account.SignupScreen
 import com.example.doancoso3.ui.data.ViewModelDACS3
+import com.example.doancoso3.ui.payment_ui.PaymentScreen
+import com.example.doancoso3.ui.payment_ui.SuccessScreen
 import com.example.doancoso3.ui.theme.DoAnCoSo3Theme
 
 
@@ -120,12 +124,46 @@ fun NavHostAppDACS3(
 
             }
         }
-           composable(route = ScreenDACS3.CartScreen.route){
-                CartScreen(navHostController = navHostController, viewModelDACS3 = viewModelDACS3)
-            }
+        composable(route = ScreenDACS3.CartScreen.route) {
+            CartScreen(navHostController = navHostController, viewModelDACS3 = viewModelDACS3)
+        }
 //           composable(route = NavHostScreen.TaiKhoan.name){
 //
 //            }
+        composable(
+            route = "${ScreenDACS3.CheckOut.route}/{totalGia}",
+            arguments = listOf(
+                navArgument("totalGia") {
+                    type = NavType.LongType
+                }
+            )
+        ) {
+            val total = it.arguments?.getLong("totalGia")
+            if (total != null) {
+                PaymentScreen(viewModelDACS3, navHostController, total)
+            }
+        }
+        composable(
+            route = "${ScreenDACS3.Success.route}/{textName}/{textPhone}/{textLocal}/{textMessage}",
+            arguments = listOf(
+                navArgument("textName"){type = NavType.StringType},
+                navArgument("textPhone"){type = NavType.StringType},
+                navArgument("textLocal"){type = NavType.StringType},
+                navArgument("textMessage"){type = NavType.StringType},
+            )
+        ) {
+            val textName = it.arguments?.getString("textName")
+            val textPhone = it.arguments?.getString("textPhone")
+            val textLocal = it.arguments?.getString("textLocal")
+            val textMessage = it.arguments?.getString("textMessage")
+            SuccessScreen(navHostController, textName, textPhone, textLocal, textMessage)
+        }
+        composable(route = ScreenDACS3.Login.route) {
+            LoginScreen(navHostController)
+        }
+        composable(route = ScreenDACS3.Signup.route) {
+            SignupScreen(navHostController)
+        }
     }
 }
 //}

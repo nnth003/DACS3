@@ -19,8 +19,20 @@ class Data() {
 
     fun loadAnhDanhSach(): List<ProductList> {
         return listOf<ProductList>(
-            ProductList(0,"Macbook","https://firebasestorage.googleapis.com/v0/b/doancoso3-9cfb5.appspot.com/o/img%2Fmac.jpg?alt=media&token=e8b7e021-60f4-42f8-a62e-651009753b98"),
-            ProductList(1,"LapTop Danh Muc","https://firebasestorage.googleapis.com/v0/b/doancoso3-9cfb5.appspot.com/o/img%2Flaptop_dm.jpg?alt=media&token=ee1f85b4-491f-4bed-88b8-1e378346c857"),
+            ProductList(
+                0,
+                "Macbook",
+                "https://firebasestorage.googleapis.com/v0/b/doancoso3-9cfb5.appspot.com/o/img%2Fmac.jpg?alt=media&token=e8b7e021-60f4-42f8-a62e-651009753b98",
+                "20",
+                "1"
+            ),
+            ProductList(
+                1,
+                "LapTop Danh Muc",
+                "https://firebasestorage.googleapis.com/v0/b/doancoso3-9cfb5.appspot.com/o/img%2Flaptop_dm.jpg?alt=media&token=ee1f85b4-491f-4bed-88b8-1e378346c857",
+                "30",
+                "1"
+            ),
 //            UrlAnhDS("Ipad Air 5","https://firebasestorage.googleapis.com/v0/b/doancoso3-9cfb5.appspot.com/o/img%2Fipadair5.jpg?alt=media&token=ea2d2a31-b257-4233-9921-7fe465755405"),
 //            UrlAnhDS("Iphone 14","https://firebasestorage.googleapis.com/v0/b/doancoso3-9cfb5.appspot.com/o/img%2Fip14.jpg?alt=media&token=19e957db-e8b4-431e-bcfd-aa82ad742df1"),
 //            UrlAnhDS("Iphone 14","https://firebasestorage.googleapis.com/v0/b/doancoso3-9cfb5.appspot.com/o/img%2Fip14.jpg?alt=media&token=19e957db-e8b4-431e-bcfd-aa82ad742df1"),

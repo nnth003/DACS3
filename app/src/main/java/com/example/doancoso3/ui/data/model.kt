@@ -17,16 +17,46 @@ val size = (36..42).toList()
 
 data class DuLieu(
     @DrawableRes val anh: Int,
-//    @StringRes val ten: Int,
 )
 
 data class UrlAnh(
     val anh: String,
 )
+
 data class ProductList(
     val id: Int,
     var name: String,
-    val imgae: String,
+    val image: String,
+    val gia: String,
+    val soluong: String,
+)
+
+data class CartList(
+    val id: Int,
+    var name: String,
+    val image: String,
+    var gia: String,
+    val giabandau: String,
+    val soluong: String,
+)
+
+data class Users(
+    val name: String,
+    val phone: String,
+    val local: String,
+    val message: String
+)
+data class CartList2(
+    val id: Int,
+    var name: String,
+    val image: String,
+)
+data class CartList3(
+    val id: Int,
+    var name: String,
+    val image: String,
+    val gia: String,
+    val soluong: String,
 )
 
 

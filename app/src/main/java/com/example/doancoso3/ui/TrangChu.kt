@@ -100,14 +100,16 @@ fun ScaffoldHome(
                 navController = navHostController,
                 isVisible = topBarVisibilityState.value,
                 searchCharSequence = {},
-                onNotificationIconClick = { /*TODO*/ },
+                onAccountIconClick = {
+                    navHostController.navigate(ScreenDACS3.Login.route)
+                },
                 onCartIconClick = {
                     navHostController.navigate(ScreenDACS3.CartScreen.route)
                 }
             )
         },
         bottomBar = {
-            BottomAppBar()
+//            BottomAppBar()
 
         },
     )
@@ -136,7 +138,7 @@ fun ScaffoldHome(
 //                }
                 items(sanPhamList) { item ->
                     CategoryCard(
-                        urlAnh = item.imgae,
+                        urlAnh = item.image,
                         onSelected = {
                             navHostController.navigate(ScreenDACS3.EcommerceHomeScreen.route)
                         }
@@ -288,7 +290,7 @@ fun ProductCard(
             ) {
                 Column {
                     AsyncImage(
-                        model = url.imgae,
+                        model = url.image,
                         contentDescription = "",
                         alignment = Alignment.Center,
                         contentScale = ContentScale.FillBounds,
@@ -322,7 +324,7 @@ fun AppBar(
     navController: NavHostController,
     isVisible: Boolean,
     searchCharSequence: (String) -> Unit,
-    onNotificationIconClick: () -> Unit,
+    onAccountIconClick: () -> Unit,
     onCartIconClick: () -> Unit
 ) {
     var typedText by remember {
@@ -391,14 +393,14 @@ fun AppBar(
                         .background(Color.White)
                         .constrainAs(notification) {}
                         .clickable {
-                            onNotificationIconClick()
+                            onAccountIconClick()
                         },
 
                     contentAlignment = Alignment.Center
                 ) {
                     Image(
                         imageVector = Icons.Default.AccountCircle,
-                        contentDescription = "Notification Icon"
+                        contentDescription = "Account Icon"
                     )
 
                 }

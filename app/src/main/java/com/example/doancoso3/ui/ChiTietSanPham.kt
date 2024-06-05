@@ -26,6 +26,7 @@ import androidx.compose.ui.Alignment.Companion.End
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -46,6 +47,7 @@ fun ProductScreen(
     navController: NavHostController,
     id: Int
 ) {
+    val context = LocalContext.current
     val sanPhamList by viewModelDACS3.product.collectAsState()
     val product = sanPhamList[id]
 
@@ -63,7 +65,7 @@ fun ProductScreen(
                 .padding(16.dp),
         ) {
             ImageSection(
-                product.imgae,
+                product.image,
                 Color.White,
                 Modifier.clickable { navController.navigateUp() }
             )
@@ -83,7 +85,13 @@ fun ProductScreen(
             modifier = Modifier.align(End),
             color = Color.White,
             onSelected = {
-                viewModelDACS3.addSanPham(product.name, product.imgae)
+                viewModelDACS3.addCartItem(
+                    id = product.id,
+                    ten = product.name,
+                    anh = product.image,
+                    gia = product.gia,
+                    soluong = product.soluong
+                )
                 navController.navigate(ScreenDACS3.CartScreen.route)
             }
         )

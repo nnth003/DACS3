@@ -11,7 +11,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
-import com.example.doancoso3.ui.navigation.NavHostAppDACS3
+import com.example.doancoso3.ui.api.data3.NavGraph
+import com.example.doancoso3.ui.api.data3.UserView
+import com.example.doancoso3.ui.api.data3.UserViewModel
 import com.example.doancoso3.ui.theme.DoAnCoSo3Theme
 
 class MainActivity : ComponentActivity() {
@@ -25,8 +27,17 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    val navController = rememberNavController()
-                    NavHostAppDACS3(navController)
+//                    val vm = TodoViewModel()
+//                    TodoView(vm = vm)
+//                    MyComposable()
+//                    val vm = UserViewModel()
+//                    UserView(vm = vm)
+                    val nav = rememberNavController()
+                    NavGraph(navController = nav)
+
+
+//                    val navController = rememberNavController()
+//                    NavHostAppDACS3(navController)
 //                    Navigation(navHostController = navController)
 //                    Home()
 //                    CourseScreen()

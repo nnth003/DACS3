@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -28,7 +29,7 @@ fun BackButton(
     Box(
         modifier = Modifier
             .size(50.dp)
-            .background(textWhite, CircleShape)
+            .background(Color.White, CircleShape)
             .clickable(onClick = onClick),
         contentAlignment = Alignment.Center
     ) {
@@ -52,33 +53,11 @@ fun TitleSection(
             fontSize = 40.sp,
             fontWeight = FontWeight.Bold,
         )
-        Text(text = description, color = textLightColor, fontSize = 16.sp)
+        Text(text = description, color = MaterialTheme.colorScheme.primary, fontSize = 16.sp)
     }
 }
 
-@Composable
-fun SignupTextField(
-    value: String,
-    onValueChange: (String) -> Unit,
-    hint: String,
-    hintTitle: String,
-) {
-    Column{
-        Text(text = hintTitle, modifier = Modifier.padding(start = 4.dp, bottom = 4.dp), color = textLightColor)
-        TextField(
-            value = value,
-            onValueChange = onValueChange,
-            placeholder = {
-                Text(text = hint)
-            },
-            colors = TextFieldDefaults.colors(
-//                backgroundColor = textWhite,
-                focusedIndicatorColor = primaryColor
-            ),
-            modifier = Modifier.fillMaxWidth(),
-        )
-    }
-}
+
 
 @Composable
 fun ContinueButtonSection(
@@ -88,7 +67,8 @@ fun ContinueButtonSection(
 ) {
     Row(
         modifier = Modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .clickable {  },
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
@@ -98,7 +78,7 @@ fun ContinueButtonSection(
             fontWeight = FontWeight.SemiBold
         )
         Surface(
-            color = primaryColor,
+            color = MaterialTheme.colorScheme.primary,
             shape = CircleShape,
 //            elevation = 8.dp
         ) {
@@ -132,10 +112,10 @@ fun RedirectSection(
             text = text,
             fontSize = 20.sp,
             fontWeight = FontWeight.SemiBold,
-            color = primaryColor,
+            color = MaterialTheme.colorScheme.primary,
             modifier = Modifier.clickable(onClick = onClick)
         )
-        if(isForgotPassword) {
+        if (isForgotPassword) {
             Text(text = "Forget password?", fontSize = 16.sp)
         }
     }
