@@ -51,7 +51,7 @@ fun LoginScreen(
             Button(
                 onClick = { /*TODO*/ },
                 modifier = Modifier.width(200.dp)
-                ) {
+            ) {
                 Text(text = "Login")
             }
         }

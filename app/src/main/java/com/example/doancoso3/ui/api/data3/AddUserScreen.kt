@@ -19,17 +19,15 @@ import androidx.navigation.NavController
 @Composable
 fun AddUserScreen(navController: NavController, vm: UserViewModel = viewModel()) {
     var name by remember { mutableStateOf("") }
-    var age by remember { mutableStateOf("") }
-    var city by remember { mutableStateOf("") }
+    var description by remember { mutableStateOf("") }
 
     Column(modifier = Modifier.padding(16.dp)) {
         TextField(value = name, onValueChange = { name = it }, label = { Text("Name") })
-        TextField(value = age, onValueChange = { age = it }, label = { Text("Age") })
-        TextField(value = city, onValueChange = { city = it }, label = { Text("City") })
+        TextField(value = description, onValueChange = { description = it }, label = { Text("Description") })
 
         Button(onClick = {
             // Add User
-            vm.addUser(UserItem(id = "0", name = name, age = age, city = city))
+            vm.addUser(name, description)
             navController.navigate("user_list")
         }) {
             Text("Add User")

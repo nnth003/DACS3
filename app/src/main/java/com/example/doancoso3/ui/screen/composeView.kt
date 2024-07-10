@@ -1,4 +1,4 @@
-//package com.example.doancoso3.ui
+package com.example.doancoso3.ui.screen//package com.example.doancoso3.ui
 //
 //import androidx.compose.foundation.Image
 //import androidx.compose.foundation.layout.Column

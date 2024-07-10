@@ -6,6 +6,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -13,24 +14,30 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
-fun EditUserScreen(navController: NavController, userId: String, vm: UserViewModel = viewModel()) {
-    val user = vm.getUserById(userId)
+fun EditUserScreen(
+    navController: NavController,
+    userId: Int,
+    vm: UserViewModel,
+) {
+//    LaunchedEffect(Unit) {
+//        vm.getUserById(userId)
+//    }
+
+    val userList by vm.user1.collectAsState()
+    val user = userList.find { it.id == userId }
 
     var name by remember { mutableStateOf(user?.name ?: "") }
-    var age by remember { mutableStateOf(user?.age ?: "") }
-    var city by remember { mutableStateOf(user?.city ?: "") }
+    var description by remember { mutableStateOf(user?.description ?: "") }
 
     Column(modifier = Modifier.padding(16.dp)) {
         TextField(value = name, onValueChange = { name = it }, label = { Text("Name") })
-        TextField(value = age, onValueChange = { age = it }, label = { Text("Age") })
-        TextField(value = city, onValueChange = { city = it }, label = { Text("City") })
+        TextField(value = description, onValueChange = { description = it }, label = { Text("Description") })
 
         Button(onClick = {
             // Update User
-            vm.updateUser(UserItem(id = userId, name = name, age = age, city = city))
+            vm.updateUser(navController,userId, name, description)
             navController.navigate("user_list")
         }) {
             Text("Update User")

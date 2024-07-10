@@ -78,6 +78,8 @@ dependencies {
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
     implementation("androidx.navigation:navigation-compose:2.7.4")
+//    implementation("androidx.compose.material:material-*:1.7.0-alpha08")
+    implementation ("androidx.compose.material:material-icons-extended:1.6.8")
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
@@ -95,7 +97,10 @@ dependencies {
 //    implementation("androidx.compose.runtime:runtime-livedata:1.6.7")
 //    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.7.0")
 //
-    implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
+    implementation("com.google.firebase:firebase-bom:33.0.0")
+    implementation("com.google.android.gms:play-services-auth:21.0.0")
+    implementation("com.google.firebase:firebase-auth")
+
 //    implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-storage-ktx:21.0.0")
 //    implementation ("com.google.firebase:firebase-database-ktx:20.0.2")

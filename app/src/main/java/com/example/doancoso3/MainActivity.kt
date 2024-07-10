@@ -10,10 +10,11 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
-import com.example.doancoso3.ui.api.data3.NavGraph
-import com.example.doancoso3.ui.api.data3.UserView
-import com.example.doancoso3.ui.api.data3.UserViewModel
+import com.example.doancoso3.ui.dacs3.model.ViewModelDA
+import com.example.doancoso3.ui.dacs3.view.NavigationDA3
+import com.example.doancoso3.ui.dacs3.view.Order
 import com.example.doancoso3.ui.theme.DoAnCoSo3Theme
 
 class MainActivity : ComponentActivity() {
@@ -32,12 +33,30 @@ class MainActivity : ComponentActivity() {
 //                    MyComposable()
 //                    val vm = UserViewModel()
 //                    UserView(vm = vm)
-                    val nav = rememberNavController()
-                    NavGraph(navController = nav)
+
+                    //data3
+//                    val nav = rememberNavController()
+//                    val viewModel: UserViewModel = viewModel()
+//                    NavGraph(navController = nav, viewModel)
+
+                    //data4
+//                    val navController = rememberNavController()
+//                    val viewModel = ItemViewModel()
+//                    AppNavHost(navController, viewModel)
 
 
 //                    val navController = rememberNavController()
 //                    NavHostAppDACS3(navController)
+
+                    val navController = rememberNavController()
+//                    val viewModelDA: ViewModelDA = viewModel()
+//                    Order(navHostController = navController, viewModelDA = viewModelDA, id = id)
+                    NavigationDA3(navHostController = navController)
+//                        Profile ()
+//                    UI()
+
+
+
 //                    Navigation(navHostController = navController)
 //                    Home()
 //                    CourseScreen()

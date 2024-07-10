@@ -1,5 +1,6 @@
-package com.example.doancoso3.ui
+package com.example.doancoso3.ui.dacs3.view
 
+import android.icu.text.NumberFormat
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -22,10 +23,10 @@ import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -35,11 +36,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableLongStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -50,48 +50,34 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberAsyncImagePainter
 import com.example.doancoso3.R
-import com.example.doancoso3.ui.data.CartList
-import com.example.doancoso3.ui.data.ViewModelDACS3
-import com.example.doancoso3.ui.navigation.ScreenDACS3
-import com.example.doancoso3.ui.theme.DoAnCoSo3Theme
-
-//data class Go(
-//    val ten: String,
-//    @DrawableRes val anh: Int,
-//    val gia: String
-//)
-//
-//class DataGioHang() {
-//    fun load(): List<Go> {
-//        return listOf<Go>(
-//            Go("Macbook", R.drawable.architecture, "19.000.000đ"),
-//            Go("SamSung", R.drawable.architecture, "20.000.000đ"),
-//            Go("Dell", R.drawable.architecture, "10.000.000đ"),
-//        )
-//    }
-//}
+import com.example.doancoso3.ui.dacs3.model.ViewModelDA
+import com.example.doancoso3.ui.dacs3.model.giohang
+import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CartScreen(
     navHostController: NavHostController,
-    viewModelDACS3: ViewModelDACS3,
+    viewModelDA: ViewModelDA,
+    iduser: Int,
 ) {
-    val cartList by viewModelDACS3.cart.collectAsState()
-    val totalGia by viewModelDACS3.totalGia.collectAsState()
+    val giohang by viewModelDA.giohang.collectAsState()
+    val tongtien by viewModelDA.tonggia.collectAsState()
+    LaunchedEffect(Unit) {
+        viewModelDA.getGioHang(iduser)
+        viewModelDA.getTongGia(iduser)
+    }
 
     Scaffold(
         topBar = {
             TopAppBar(
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.onTertiary,
-                    titleContentColor = MaterialTheme.colorScheme.primary,
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
                 ),
                 title = {
                     Text(stringResource(R.string.giohang))
@@ -107,56 +93,102 @@ fun CartScreen(
             )
         },
         bottomBar = {
-            BottomAppBar(
+            androidx.compose.material3.BottomAppBar(
                 containerColor = MaterialTheme.colorScheme.onTertiary,
                 contentColor = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(100.dp)
             ) {
+                Column {
+                    Row {
+                        Button(
+                            onClick = {
+                                navHostController.navigate(RouteScreen.Home.route)
+                            },
+                            modifier = Modifier
+                                .weight(1f)
+                                .padding(start = 2.dp, end = 2.dp)
+                        ) {
+                            Text(text = "Trở về trang chủ")
+                        }
+                    }
+                    Spacer(modifier = Modifier.height(1.dp))
+                    Divider()
+                    Spacer(modifier = Modifier.height(1.dp))
 
-                Text(
-                    text = "Tổng tiền: $totalGia",
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(start = 7.dp),
-                    color = Color.DarkGray
-                )
-                Button(
-                    onClick = {
-                        navHostController.navigate("${ScreenDACS3.CheckOut.route}/${totalGia}")
-                    },
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(end = 2.dp)
-                ) {
-                    Text(text = "Thanh Toán")
+                    Row {
+                        if (tongtien.isNotEmpty()) {
+                            val price = tongtien[0]
+                            Column(
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .padding(start = 7.dp),
+                            ) {
+                                Text(
+                                    text = "Tổng tiền: ",
+                                    color = Color.DarkGray,
+                                    textAlign = TextAlign.Center
+                                )
+                                Text(
+                                    color = Color.DarkGray,
+                                    textAlign = TextAlign.Center,
+                                    text = currencyFormatter(amount = price.tongtien * 1000)
+                                )
+                            }
+
+                            Button(
+                                onClick = {
+                                    navHostController.navigate("${RouteScreen.CheckOut.route}/${price.tongtien * 1000}")
+                                },
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .padding(end = 2.dp)
+                            ) {
+                                Text(text = "Thanh Toán")
+                            }
+
+
+                        }
+                    }
                 }
-
 
             }
         }
     ) { innerPadding ->
-        GioHangList(cartList, modifier = Modifier.padding(innerPadding), viewModelDACS3)
+        GioHangList(iduser, giohang, modifier = Modifier.padding(innerPadding), viewModelDA)
     }
 
 }
 
 @Composable
 fun GioHangList(
-    cartList: List<CartList>,
+    iduser: Int,
+    giohangList: List<giohang>,
     modifier: Modifier = Modifier,
-    viewModelDACS3: ViewModelDACS3
+    viewModelDA: ViewModelDA
 ) {
     LazyColumn(modifier = modifier) {
-        items(cartList) { item ->
-            CardGioHang(cartList = item.copy(), modifier = Modifier.padding(8.dp), viewModelDACS3)
+        items(giohangList) { item ->
+            CardGioHang(
+                iduser = iduser,
+                giohang = item.copy(),
+                modifier = Modifier.padding(8.dp),
+                viewModelDA
+            )
         }
     }
 
 }
 
 @Composable
-fun CardGioHang(cartList: CartList, modifier: Modifier = Modifier, viewModelDACS3: ViewModelDACS3) {
-    var soluong by remember { mutableIntStateOf(cartList.soluong.toInt()) }
+fun CardGioHang(
+    iduser: Int,
+    giohang: giohang,
+    modifier: Modifier = Modifier,
+    viewModelDA: ViewModelDA
+) {
+    var soluong by remember { mutableIntStateOf(giohang.soluong) }
 
     Card(
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
@@ -177,7 +209,7 @@ fun CardGioHang(cartList: CartList, modifier: Modifier = Modifier, viewModelDACS
 
             ) {
                 Image(
-                    painter = rememberAsyncImagePainter(model = cartList.image),
+                    painter = rememberAsyncImagePainter(model = "https://apidacs3.000webhostapp.com/img/${giohang.anh}"),
                     contentDescription = null,
                     alignment = Alignment.TopCenter,
                     contentScale = ContentScale.FillWidth
@@ -185,21 +217,15 @@ fun CardGioHang(cartList: CartList, modifier: Modifier = Modifier, viewModelDACS
             }
             Spacer(Modifier.width(20.dp))
             Column(modifier = Modifier.weight(1f)) {
-                if (cartList.gia.toInt() == 0) {
-                    cartList.gia = cartList.giabandau
-
-                } else {
-                    cartList.gia
-                }
                 Text(
 //                    text = stringResource(go.ten),
-                    text = cartList.name,
+                    text = giohang.tensanpham,
                     style = MaterialTheme.typography.titleMedium,
 //                    color = Color(0xFFFCE4EC)
                 )
                 Spacer(modifier = Modifier.height(10.dp))
                 Text(
-                    text = cartList.gia,
+                    text = currencyFormatter(amount = (giohang.gia).toInt() * 1000 * soluong),
                     style = MaterialTheme.typography.bodyLarge,
 //                    color = Color(0xFFFCE4EC)
 
@@ -209,11 +235,9 @@ fun CardGioHang(cartList: CartList, modifier: Modifier = Modifier, viewModelDACS
                     Button(
                         onClick = {
                             if (soluong > 1) soluong-- else soluong = 1
-                            viewModelDACS3.decreaseValues(
-                                cartList.id,
-                                cartList.soluong.toInt(),
-                                cartList.giabandau.toInt()
-                            )
+                            viewModelDA.getUpdateCart(giohang.id, soluong, iduser)
+                            viewModelDA.getTongGia(iduser)
+//                            viewModelDA.getGioHang()
                         },
                         modifier = Modifier
                             .width(35.dp)
@@ -235,11 +259,9 @@ fun CardGioHang(cartList: CartList, modifier: Modifier = Modifier, viewModelDACS
                     Button(
                         onClick = {
                             soluong++
-                            viewModelDACS3.increaseValues(
-                                cartList.id,
-                                cartList.soluong.toInt(),
-                                cartList.giabandau.toInt()
-                            )
+                            viewModelDA.getUpdateCart(giohang.id, soluong, iduser)
+                            viewModelDA.getTongGia(iduser)
+//                            viewModelDA.getGioHang()
                         },
                         modifier = Modifier
                             .width(35.dp)
@@ -257,7 +279,10 @@ fun CardGioHang(cartList: CartList, modifier: Modifier = Modifier, viewModelDACS
             ) {
                 Spacer(modifier = Modifier.height(45.dp))
                 Button(
-                    onClick = { viewModelDACS3.deleteCartItem(cartList.id) },
+                    onClick = {
+                        viewModelDA.deleteCart(giohang.id, iduser)
+                        viewModelDA.getGioHang(iduser)
+                    },
                     modifier = Modifier.height(35.dp)
 //                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.onPrimaryContainer)
                 ) {
@@ -273,15 +298,7 @@ fun CardGioHang(cartList: CartList, modifier: Modifier = Modifier, viewModelDACS
     }
 }
 
-@Preview(
-    showSystemUi = true,
-    showBackground = true,
-)
 @Composable
-fun GioHang() {
-    DoAnCoSo3Theme(darkTheme = false) {
-        val viewModelDACS3 = ViewModelDACS3()
-        val navHostController = rememberNavController()
-        CartScreen(navHostController, viewModelDACS3)
-    }
+fun currencyFormatter(amount: Int): String {
+    return NumberFormat.getNumberInstance(Locale("vi", "VN")).format(amount) + " VNĐ"
 }

@@ -6,8 +6,9 @@
     <string name="giohang">Giỏ Hàng</string>
     <string name="taikhoan">Tài Khoản</string>
 
-    <string name="danhmucsanpham">Danh Muc Sản Phẩm </string>
-    <string name="danhsachsanpham">Danh Sách Sản Phẩm Nổi Bật</string>
+    <string name="danhmucsanpham">Danh Mục Sản Phẩm </string>
+    <string name="danhsachsanphamnoibat">Danh Sách Sản Phẩm Nổi Bật</string>
+    <string name="danhsachsanpham">Danh Sách Sản Phẩm </string>
 
     <string name="back_button">Back</string>
 

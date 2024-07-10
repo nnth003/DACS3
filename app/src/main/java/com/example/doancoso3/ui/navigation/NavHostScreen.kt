@@ -12,10 +12,10 @@ import androidx.navigation.NavType
 import  androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.doancoso3.ui.CartScreen
-import com.example.doancoso3.ui.EcommerceHomeScreen
-import com.example.doancoso3.ui.ProductScreen
-import com.example.doancoso3.ui.ScaffoldHome
+import com.example.doancoso3.ui.screen.CartScreen
+import com.example.doancoso3.ui.screen.EcommerceHomeScreen
+import com.example.doancoso3.ui.screen.ProductScreen
+import com.example.doancoso3.ui.screen.ScaffoldHome
 import com.example.doancoso3.ui.account.LoginScreen
 import com.example.doancoso3.ui.account.SignupScreen
 import com.example.doancoso3.ui.data.ViewModelDACS3
