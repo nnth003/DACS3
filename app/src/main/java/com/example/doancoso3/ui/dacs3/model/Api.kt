@@ -128,7 +128,9 @@ interface Api {
         fun getInstance(): Api {
             if (api == null) {
                 api = Retrofit.Builder()
-                    .baseUrl("https://apidacs3.000webhostapp.com/UserApi/")
+//                    .baseUrl("https://apidacs3.000webhostapp.com/UserApi/")
+//                    .baseUrl("http://apidavku.onlinewebshop.net/UserApi/")
+                    .baseUrl("http://haintweb.io.vn/UserApi/")
                     .addConverterFactory(
                         GsonConverterFactory.create(
                             GsonBuilder().setLenient().create()

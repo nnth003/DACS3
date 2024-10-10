@@ -33,11 +33,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-import com.example.doancoso3.ui.dacs3.model.ViewModelDA
+import com.example.doancoso3.ui.dacs3.viewmodel.ViewModelDA
+import com.example.doancoso3.ui.dacs3.view.navigation.RouteScreen
 
-//import com.example.doancoso3.ui.dacs3.model.ViewModelDA
+//import com.example.doancoso3.ui.dacs3.viewmodel.ViewModelDA
 //import com.example.doancoso3.ui.dacs3.testapi.VM
 
 

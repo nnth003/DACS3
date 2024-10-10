@@ -18,7 +18,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -43,7 +42,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
-import com.example.doancoso3.ui.dacs3.model.ViewModelDA
+import com.example.doancoso3.ui.dacs3.viewmodel.ViewModelDA
+import com.example.doancoso3.ui.dacs3.view.navigation.RouteScreen
 
 val textColor = Color(0xFFB1B1B1)
 
@@ -70,7 +70,7 @@ fun ProductDetail(
     ) {
         if (sanpham.isNotEmpty()) {
             val product = sanpham[0]
-            val url = "https://apidacs3.000webhostapp.com/img/${product.image}"
+            val url = "https://haintweb.io.vn/img/${product.image}"
             Log.d("IDUSER", "ID: ${auth_id[0].iduser}")
 
             Column(

@@ -10,11 +10,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
-import com.example.doancoso3.ui.dacs3.model.ViewModelDA
-import com.example.doancoso3.ui.dacs3.view.NavigationDA3
-import com.example.doancoso3.ui.dacs3.view.Order
+import com.example.doancoso3.ui.dacs3.view.navigation.NavigationDA3
 import com.example.doancoso3.ui.theme.DoAnCoSo3Theme
 
 class MainActivity : ComponentActivity() {

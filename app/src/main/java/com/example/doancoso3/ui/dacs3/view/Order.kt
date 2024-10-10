@@ -43,11 +43,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
-import com.example.doancoso3.ui.dacs3.model.ViewModelDA
+import com.example.doancoso3.ui.dacs3.viewmodel.ViewModelDA
 import com.example.doancoso3.ui.dacs3.model.donhang
+import com.example.doancoso3.ui.dacs3.view.navigation.RouteScreen
 import java.util.Date
 
 data class Data2(

@@ -1,8 +1,5 @@
 package com.example.doancoso3.ui.dacs3.model
 
-import java.util.Date
-
-
 data class users(
     val iduser: Int,
     val user: String,

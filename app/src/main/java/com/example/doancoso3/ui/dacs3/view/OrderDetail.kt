@@ -1,6 +1,5 @@
 package com.example.doancoso3.ui.dacs3.view
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -37,13 +36,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
-import com.example.doancoso3.R
-import com.example.doancoso3.ui.dacs3.model.ViewModelDA
+import com.example.doancoso3.ui.dacs3.viewmodel.ViewModelDA
 import com.example.doancoso3.ui.dacs3.model.chitietdonhang
 
 //data class Data(
@@ -178,7 +175,7 @@ fun CardOrder(
 
             ) {
                 AsyncImage(
-                    model = "https://apidacs3.000webhostapp.com/img/${data.anh}",
+                    model = "https://haintweb.io.vn/img/${data.anh}",
                     contentDescription = "",
                     alignment = Alignment.Center,
                     contentScale = ContentScale.FillBounds

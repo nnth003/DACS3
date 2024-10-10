@@ -21,7 +21,6 @@ import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Home
@@ -36,8 +35,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -53,7 +50,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -63,8 +59,9 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.example.doancoso3.R
-import com.example.doancoso3.ui.dacs3.model.ViewModelDA
+import com.example.doancoso3.ui.dacs3.viewmodel.ViewModelDA
 import com.example.doancoso3.ui.dacs3.model.sanpham
+import com.example.doancoso3.ui.dacs3.view.navigation.RouteScreen
 
 @Composable
 fun Home(
@@ -137,7 +134,7 @@ fun Home(
                         items(danhmuc) { item ->
 //                        Text(item.TenDanhMuc)
                             CategoryCard(
-                                urlAnh = "https://apidacs3.000webhostapp.com/img/${item.anh}",
+                                urlAnh = "https://haintweb.io.vn/img/${item.anh}",
                                 onSelected = {
                                     navHostController.navigate("${RouteScreen.ProductList.route}/${item.IDDM}")
                                 }
@@ -320,7 +317,7 @@ fun ProductCard(
             ) {
                 Column {
                     AsyncImage(
-                        model = "https://apidacs3.000webhostapp.com/img/${sanpham.image}",
+                        model = "https://haintweb.io.vn/img/${sanpham.image}",
                         contentDescription = "",
                         alignment = Alignment.Center,
                         contentScale = ContentScale.FillBounds,

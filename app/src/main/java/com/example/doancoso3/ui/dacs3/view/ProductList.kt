@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -20,14 +19,12 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -54,10 +51,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.example.doancoso3.R
-import com.example.doancoso3.ui.dacs3.model.ViewModelDA
+import com.example.doancoso3.ui.dacs3.viewmodel.ViewModelDA
 import com.example.doancoso3.ui.dacs3.model.sanpham
-import com.example.doancoso3.ui.screen.textColor
-import kotlinx.coroutines.delay
+import com.example.doancoso3.ui.dacs3.view.navigation.RouteScreen
 
 val searchText = mutableStateOf("")
 
@@ -85,7 +81,10 @@ fun ProductList(
                     Text(stringResource(R.string.danhsachsanpham))
                 },
                 navigationIcon = {
-                    IconButton(onClick = { navController.navigateUp() }) {
+                    IconButton(onClick = {
+                        navController.navigateUp()
+                        viewModelDA.clearProductList()
+                    }) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
                             contentDescription = ""
@@ -208,7 +207,7 @@ fun ProductItem(
 //                    modifier = Modifier.fillMaxWidth(0.4f)
 //                )
                 AsyncImage(
-                    model = "https://apidacs3.000webhostapp.com/img/${sanpham.image}",
+                    model = "https://haintweb.io.vn/img/${sanpham.image}",
                     contentDescription = null,
                     modifier = Modifier.fillMaxWidth(0.4f)
                 )
@@ -243,31 +242,31 @@ fun ProductItem(
     }
 
 }
-fun Modifier.ListEffect(): Modifier = composed {
-    var size by remember {
-        mutableStateOf(IntSize.Zero)
-    }
-    val transition = rememberInfiniteTransition()
-    val startOffsetX by transition.animateFloat(
-        initialValue = -2 * size.width.toFloat(),
-        targetValue = 2 * size.width.toFloat(),
-        animationSpec = infiniteRepeatable(
-            animation = tween(1000)
-        )
-    )
-
-    background(
-        brush = Brush.linearGradient(
-            colors = listOf(
-                Color(0xFFB8B5B5),
-                Color(0xFF8F8B8B),
-                Color(0xFFB8B5B5),
-            ),
-            start = Offset(startOffsetX, 0f),
-            end = Offset(startOffsetX + size.width.toFloat(), size.height.toFloat())
-        )
-    )
-        .onGloballyPositioned {
-            size = it.size
-        }
-}
+//fun Modifier.ListEffect(): Modifier = composed {
+//    var size by remember {
+//        mutableStateOf(IntSize.Zero)
+//    }
+//    val transition = rememberInfiniteTransition()
+//    val startOffsetX by transition.animateFloat(
+//        initialValue = -2 * size.width.toFloat(),
+//        targetValue = 2 * size.width.toFloat(),
+//        animationSpec = infiniteRepeatable(
+//            animation = tween(1000)
+//        )
+//    )
+//
+//    background(
+//        brush = Brush.linearGradient(
+//            colors = listOf(
+//                Color(0xFFB8B5B5),
+//                Color(0xFF8F8B8B),
+//                Color(0xFFB8B5B5),
+//            ),
+//            start = Offset(startOffsetX, 0f),
+//            end = Offset(startOffsetX + size.width.toFloat(), size.height.toFloat())
+//        )
+//    )
+//        .onGloballyPositioned {
+//            size = it.size
+//        }
+//}

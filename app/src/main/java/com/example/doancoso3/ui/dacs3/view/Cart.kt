@@ -54,8 +54,9 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.doancoso3.R
-import com.example.doancoso3.ui.dacs3.model.ViewModelDA
+import com.example.doancoso3.ui.dacs3.viewmodel.ViewModelDA
 import com.example.doancoso3.ui.dacs3.model.giohang
+import com.example.doancoso3.ui.dacs3.view.navigation.RouteScreen
 import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -209,7 +210,7 @@ fun CardGioHang(
 
             ) {
                 Image(
-                    painter = rememberAsyncImagePainter(model = "https://apidacs3.000webhostapp.com/img/${giohang.anh}"),
+                    painter = rememberAsyncImagePainter(model = "https://haintweb.io.vn/img/${giohang.anh}"),
                     contentDescription = null,
                     alignment = Alignment.TopCenter,
                     contentScale = ContentScale.FillWidth
