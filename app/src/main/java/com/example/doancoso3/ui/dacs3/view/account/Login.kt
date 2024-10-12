@@ -115,7 +115,7 @@ fun LoginScreen(
                 TextField(
                     label = {
                         Text(
-                            text = "Email Address",
+                            text = "User Name",
 //                            modifier = Modifier.padding(start = 4.dp, bottom = 4.dp),
                             color = MaterialTheme.colorScheme.primary
                         )

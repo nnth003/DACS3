@@ -36,6 +36,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -57,6 +58,7 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import coil.compose.AsyncImage
 import com.example.doancoso3.R
 import com.example.doancoso3.ui.dacs3.viewmodel.ViewModelDA
@@ -68,7 +70,9 @@ fun Home(
     viewModel: ViewModelDA,
     navHostController: NavHostController,
 ) {
-    LaunchedEffect(Unit) {
+    val currentBackStackEntry by navHostController.currentBackStackEntryAsState()
+
+    LaunchedEffect (currentBackStackEntry) {
         viewModel.getDanhMuc()
         viewModel.getSanPham()
     }

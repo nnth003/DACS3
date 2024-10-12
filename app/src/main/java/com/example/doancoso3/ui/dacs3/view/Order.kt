@@ -169,7 +169,7 @@ fun CardTrack(
             Spacer(modifier = Modifier.height(8.dp))
             Text(text = "Trạng thái: ${data.trangthai}", fontSize = 14.sp)
             Spacer(modifier = Modifier.height(8.dp))
-            Text(text = "Tổng giá: $${data.tonggia}", fontSize = 14.sp)
+            Text(text = "Tổng giá: ${currencyFormatter(amount = data.tonggia * 1000) }", fontSize = 14.sp)
             Spacer(modifier = Modifier.height(16.dp))
             Row(
                 modifier = Modifier.fillMaxWidth(),

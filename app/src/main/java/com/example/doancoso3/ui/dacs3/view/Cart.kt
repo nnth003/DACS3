@@ -84,7 +84,7 @@ fun CartScreen(
                     Text(stringResource(R.string.giohang))
                 },
                 navigationIcon = {
-                    IconButton(onClick = { navHostController.navigateUp() }) {
+                    IconButton(onClick = { navHostController.navigateUp()}) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
                             contentDescription = ""

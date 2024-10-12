@@ -83,7 +83,7 @@ fun ProductList(
                 navigationIcon = {
                     IconButton(onClick = {
                         navController.navigateUp()
-                        viewModelDA.clearProductList()
+//                        viewModelDA.clearProductList()
                     }) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
